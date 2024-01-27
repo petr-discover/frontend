@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './LoginPage.css';
 
 const LoginPage = (props) => {
     const [email, setEmail] = useState("")
@@ -8,21 +9,6 @@ const LoginPage = (props) => {
     const [passwordError, setPasswordError] = useState("")
     
     const navigate = useNavigate();
-
-    // Call the server API to check if the given email ID already exists
-    const checkAccountExists = (callback) => {
-        fetch("http://localhost:3080/check-account", { // TODO: checkaccount request
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-              },
-            body: JSON.stringify({email})
-        })
-        .then(r => r.json())
-        .then(r => {
-            callback(r?.userExists)
-        })
-    }
 
     // Log in a user using email and password
     const logIn = () => {
@@ -39,14 +25,13 @@ const LoginPage = (props) => {
                 localStorage.setItem("user", JSON.stringify({email, token: r.token}))
                 props.setLoggedIn(true)
                 props.setEmail(email)
-                navigate("/")
+                navigate("/dashboard")
             } else {
                 window.alert("Wrong email or password")
             }
         })
     }
 
-        
     const onButtonClick = () => {
         // Set initial error values to empty
         setEmailError("")
@@ -73,52 +58,111 @@ const LoginPage = (props) => {
             return
         }
 
-        // Authentication calls will be made here...
-        checkAccountExists(accountExists => {
-            // If yes, log in 
-            if (accountExists)
-                logIn()
-            else
-            // Else, ask user if they want to create a new account and if yes, then log in
-                if (window.confirm("An account does not exist with this email address: " + email + ". Do you want to create a new account?")) {
-                    logIn()
-                }
-        })
+        logIn();
     }
 
     return (
-        <div className={"mainContainer"}>
-            <div className={"titleContainer"}>
-                <div>Login</div>
+        <div className="loginBox">
+            <div className="titleContainer">
+                <h3>Log in here</h3>
             </div>
             <br />
-            <div className={"inputContainer"}>
+            <div className="inputContainer">
                 <input
-                    value={email}
+                    id="uname"
+                    type="text"
+                    name="Email"
                     placeholder="Enter your email here"
-                    onChange={ev => setEmail(ev.target.value)}
-                    className={"inputBox"} />
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    className="inputBox"
+                />
                 <label className="errorLabel">{emailError}</label>
             </div>
             <br />
-            <div className={"inputContainer"}>
+            <div className="inputContainer">
                 <input
-                    value={password}
+                    id="pass"
+                    type="password"
+                    name="Password"
                     placeholder="Enter your password here"
-                    onChange={ev => setPassword(ev.target.value)}
-                    className={"inputBox"} />
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    className="inputBox"
+                />
                 <label className="errorLabel">{passwordError}</label>
             </div>
             <br />
-            <div className={"inputContainer"}>
+            <div className="inputContainer">
                 <input
-                    className={"inputButton"}
+                    className="inputButton"
                     type="button"
                     onClick={onButtonClick}
-                    value={"Log in"} />
+                    value="Log in"
+                />
+            </div>
+            <a href="#">Forget Password<br/></a>
+            <div className="text-center">
+                <p style={{ color: "#59238F" }}>Sign up</p>
             </div>
         </div>
     );
-}
-
+};
 export default LoginPage;
+
+
+//     return (
+//         <div className="loginBox">
+//              <h3>Log in here</h3>
+//             <form onSubmit={onButtonClick}>
+//                 <div className="inputBox">
+//                     <input id="uname" type="text" name="Email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+//                     <input id="pass" type="password" name="Password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+//                 </div>
+//                 <input type="submit" name="" value="Login" />
+//             </form>
+//             <a href="#">Forget Password<br/></a>
+//             <div className="text-center">
+//                 <p style={{ color: "#59238F" }}>Sign up</p>
+//             </div>
+//         </div>
+//     );
+// };
+
+
+//     return (
+//         <div className={"mainContainer"}>
+//             <div className={"titleContainer"}>
+//                 <div>Login</div>
+//             </div>
+//             <br />
+//             <div className={"inputContainer"}>
+//                 <input
+//                     value={email}
+//                     placeholder="Enter your email here"
+//                     onChange={ev => setEmail(ev.target.value)}
+//                     className={"inputBox"} />
+//                 <label className="errorLabel">{emailError}</label>
+//             </div>
+//             <br />
+//             <div className={"inputContainer"}>
+//                 <input
+//                     value={password}
+//                     placeholder="Enter your password here"
+//                     onChange={ev => setPassword(ev.target.value)}
+//                     className={"inputBox"} />
+//                 <label className="errorLabel">{passwordError}</label>
+//             </div>
+//             <br />
+//             <div className={"inputContainer"}>
+//                 <input
+//                     className={"inputButton"}
+//                     type="button"
+//                     onClick={onButtonClick}
+//                     value={"Log in"} />
+//             </div>
+//         </div>
+//     );
+// }
+
+// export default LoginPage;
