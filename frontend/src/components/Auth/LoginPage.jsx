@@ -3,20 +3,13 @@ import { useNavigate } from "react-router-dom";
 import './LoginPage.css';
 
 const LoginPage = (props) => {
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [usernameError, setUsernameError] = useState("");
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
-    const [activeView, setActiveView] = useState('login');
     const [activeForm, setActiveForm] = useState('login'); // 'login' or 'signup'
-
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [username, setUsername] = useState("");
-    const [firstNameError, setFirstNameError] = useState("");
-    const [lastNameError, setLastNameError] = useState("");
-    const [usernameError, setUsernameError] = useState("");
-
     
     const navigate = useNavigate();
 
@@ -48,7 +41,7 @@ const LoginPage = (props) => {
             headers: {
                 'Content-Type': 'application/json'
               },
-            body: JSON.stringify({firstName, lastName, username, email, password})
+            body: JSON.stringify({username, email, password})
         })
         .then(r => r.json())
         .then(r => {
@@ -65,23 +58,11 @@ const LoginPage = (props) => {
 
     const onButtonClick = () => {
         // Set initial error values to empty
+        setUsernameError("");
         setEmailError("");
         setPasswordError("");
-        setFirstNameError("");
-        setLastNameError("");
-        setUsernameError("");
-    
+
         // Check if the user has entered all fields correctly
-        if ("" === firstName) {
-            setFirstNameError("please enter your first name");
-            return;
-        }
-    
-        if ("" === lastName) {
-            setLastNameError("please enter your last name");
-            return;
-        }
-    
         if ("" === username) {
             setUsernameError("please enter a username");
             return;
@@ -140,17 +121,17 @@ const LoginPage = (props) => {
             <form className="form-login" action="" method="post" name="form">
                 {/* login form fields */}
                 <div className="inputContainer">
-                <input
-                    id="uname"
-                    type="text"
-                    name="Email"
-                    placeholder="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    className="inputBox"
-                />
-                <label className="errorLabel">{emailError}</label>
-            </div>
+                    <input
+                        id="uname"
+                        type="text"
+                        name="Email"
+                        placeholder="email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        className="inputBox"
+                    />
+                    <label className="errorLabel">{emailError}</label>
+                </div>
             <br />
             <div className="inputContainer">
                 <input
@@ -173,38 +154,19 @@ const LoginPage = (props) => {
                     value="connect me"
                 />
             </div>
+            <p className="orText">⎯  or  ⎯</p>
+            <div className="googleContainer">
+                <div className="flexContainer">
+                    <img src="/assets/googleicon.png" alt="google" className="googleImage" />
+                    login with Google
+                </div>
+            </div>
             </form>
         )}
 
         {activeForm === 'signup' && (
             <form className="form-signup" action="" method="post" name="form">
                 {/* Signup form fields */}
-                <div className="inputContainer">
-                    <input
-                        id="firstName"
-                        type="text"
-                        name="FirstName"
-                        placeholder="first name"
-                        value={firstName}
-                        onChange={e => setFirstName(e.target.value)}
-                        className="inputBox"
-                    />
-                    <label className="errorLabel">{firstNameError}</label>
-                </div>
-                <br />
-                <div className="inputContainer">
-                    <input
-                        id="lastName"
-                        type="text"
-                        name="LastName"
-                        placeholder="last name"
-                        value={lastName}
-                        onChange={e => setLastName(e.target.value)}
-                        className="inputBox"
-                    />
-                    <label className="errorLabel">{lastNameError}</label>
-                </div>
-                <br />
                 <div className="inputContainer">
                     <input
                         id="username"
@@ -216,6 +178,19 @@ const LoginPage = (props) => {
                         className="inputBox"
                     />
                     <label className="errorLabel">{usernameError}</label>
+                </div>
+                <br />
+                <div className="inputContainer">
+                    <input
+                        id="uname"
+                        type="text"
+                        name="Email"
+                        placeholder="email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        className="inputBox"
+                    />
+                    <label className="errorLabel">{emailError}</label>
                 </div>
                 <br />
                 <div className="inputContainer">
@@ -246,60 +221,3 @@ const LoginPage = (props) => {
     );
 };
 export default LoginPage;
-
-
-//     return (
-//         <div className="loginBox">
-//              <h3>Log in here</h3>
-//             <form onSubmit={onButtonClick}>
-//                 <div className="inputBox">
-//                     <input id="uname" type="text" name="Email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-//                     <input id="pass" type="password" name="Password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-//                 </div>
-//                 <input type="submit" name="" value="Login" />
-//             </form>
-//             <a href="#">Forget Password<br/></a>
-//             <div className="text-center">
-//                 <p style={{ color: "#59238F" }}>Sign up</p>
-//             </div>
-//         </div>
-//     );
-// };
-
-
-//     return (
-//         <div className={"mainContainer"}>
-//             <div className={"titleContainer"}>
-//                 <div>Login</div>
-//             </div>
-//             <br />
-//             <div className={"inputContainer"}>
-//                 <input
-//                     value={email}
-//                     placeholder="Enter your email here"
-//                     onChange={ev => setEmail(ev.target.value)}
-//                     className={"inputBox"} />
-//                 <label className="errorLabel">{emailError}</label>
-//             </div>
-//             <br />
-//             <div className={"inputContainer"}>
-//                 <input
-//                     value={password}
-//                     placeholder="Enter your password here"
-//                     onChange={ev => setPassword(ev.target.value)}
-//                     className={"inputBox"} />
-//                 <label className="errorLabel">{passwordError}</label>
-//             </div>
-//             <br />
-//             <div className={"inputContainer"}>
-//                 <input
-//                     className={"inputButton"}
-//                     type="button"
-//                     onClick={onButtonClick}
-//                     value={"Log in"} />
-//             </div>
-//         </div>
-//     );
-// }
-
-// export default LoginPage;
