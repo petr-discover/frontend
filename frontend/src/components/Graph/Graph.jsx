@@ -2,12 +2,79 @@ import { useRef, useEffect } from "react";
 import { forceSimulation, forceLink, forceManyBody, forceCenter } from "d3-force";
 import { select } from "d3-selection";
 
-function Graph(data, width, height, onNodeClick){   //TODO: define width, height, and onNodeClick
+function Graph(){  //data, width, height, onNodeClick){   //TODO: define width, height, and onNodeClick
     const ref = useRef(null);
 
+    //data starts here
+    const width = 400;
+    const height = 400;
+    
+    const data = {
+            "nodes": [
+              {
+                "user_uid": "1",
+                "friend_uid": "user1",
+                "card_name": "Card A",
+                "user_photo": "user1_photo.jpg",
+                "relation_name": "Friendship"
+              },
+              {
+                "user_uid": "2",
+                "friend_uid": "user2",
+                "card_name": "Card B",
+                "user_photo": "user2_photo.jpg",
+                "relation_name": "Colleague"
+              },
+              {
+                "user_uid": "3",
+                "friend_uid": "user3",
+                "card_name": "Card C",
+                "user_photo": "user2_photo.jpg",
+                "relation_name": "Daddy"
+              },
+              {
+                "user_uid": "4",
+                "friend_uid": "user4",
+                "card_name": "Card D",
+                "user_photo": "user2_photo.jpg",
+                "relation_name": "Friend"
+              },
+              {
+                "user_uid": "5",
+                "friend_uid": "user5",
+                "card_name": "Card E",
+                "user_photo": "user2_photo.jpg",
+                "relation_name": "Club Member"
+              }
+            ],
+
+            "links": [
+              {
+                "source": "user1",
+                "target": "user3"
+              },
+              {
+                "source": "user1",
+                "target": "user2"
+              },
+              {
+                "source": "user2",
+                "target": "user4"
+              },
+              {
+                "source": "user1",
+                "target": "user5"
+              }
+            ]
+          };
+    console.log(data);
+      const onNodeClick = () =>{
+        //TODO: delete
+    };
     useEffect(() =>{
+
         const svg = select(ref.current);
-        const user_id = "";         //TODO: fix this
+        const user_id = 'user1';         //TODO: fix this
 
         svg
             .append("defs")
@@ -44,7 +111,7 @@ function Graph(data, width, height, onNodeClick){   //TODO: define width, height
             .selectAll("line")
             .data(data.links)
             .join("line")
-            .attr("stroke", "white")
+            .attr("stroke", "black")
             .attr("stroke-opacity", 0.2)
             .attr("stroke-width", 1);
 
@@ -54,7 +121,7 @@ function Graph(data, width, height, onNodeClick){   //TODO: define width, height
             .join("text")
             .attr("class", "link-label")
             .style("text-anchor", "middle")
-            .style("fill", "white")
+            .style("fill", "black")
             .style("font-family", "Arial")
             .style("font-size", 5)
             .text((d) => d.target.relation_name);
@@ -64,40 +131,40 @@ function Graph(data, width, height, onNodeClick){   //TODO: define width, height
             .data(data.nodes)
             .join("g")
             .attr("transform", (d) => `translate(${d.x}, ${d.y})`)
-            .on("click", (d) => {
-              onNodeClick(d);
-            })
-            .on("mouseover", function () {
-              select(this).style("cursor", "pointer"); // Change the cursor to the pointer on mouseover
-            })
-            .on("mouseout", function () {
-              select(this).style("cursor", "default"); // Reset the cursor to default on mouseout
-            });
+            // .on("click", (d) => {
+            //   onNodeClick(d);
+            // })
+            // .on("mouseover", function () {
+            //   select(this).style("cursor", "pointer"); // Change the cursor to the pointer on mouseover
+            // })
+            // .on("mouseout", function () {
+            //   select(this).style("cursor", "default"); // Reset the cursor to default on mouseout
+            // });
 
         node
             .append("circle")
-            .attr("r", (d) => (d.friend_uid === user_uuid ? 10 : 8.5)) // user_uuid와 friend_uid가 같을 때 원의 반경을 12로 설정, 그렇지 않으면 기존대로 8.5로 설정
+            .attr("r", (d) => (d.friend_uid === user_id ? 10 : 8.5)) // user_uuid와 friend_uid가 같을 때 원의 반경을 12로 설정, 그렇지 않으면 기존대로 8.5로 설정
             .attr("fill", "lightyellow")
             .attr("opacity", 0.8)
             .attr("filter", "url(#drop-shadow)")
-            .on("click", (d) => {
-              onNodeClick(d);
-            })
-            .on("mouseover", function () {
-              select(this).style("cursor", "pointer");
-            })
-            .on("mouseout", function () {
-              select(this).style("cursor", "default");
-            });
+            // .on("click", (d) => {
+            //   onNodeClick(d);
+            // })
+        //     .on("mouseover", function () {
+        //       select(this).style("cursor", "pointer");
+        //     })
+        //     .on("mouseout", function () {
+        //       select(this).style("cursor", "default");
+        //     });
         
-        node
-            .append("image")
-            .attr("href", (d) => d.user_photo)
-            .attr("x", (d) => (d.friend_uid === user_uuid ? -12 : -8)) // image's centering adjustment also needs to match with the circle's radius
-            .attr("y", (d) => (d.friend_uid === user_uuid ? -12 : -8)) // image's centering adjustment also needs to match with the circle's radius
-            .attr("width", (d) => (d.friend_uid === user_uuid ? 24 : 16)) // Adjust the size of the image if the user_uuid matches with the friend_uid
-            .attr("height", (d) => (d.friend_uid === user_uuid ? 24 : 16)) // Adjust the size of the image if the user_uuid matches with the friend_uid
-            .attr("clip-path", "url(#clipObj)");
+        // node
+        //     .append("image")
+        //     .attr("href", (d) => d.user_photo)
+        //     .attr("x", (d) => (d.friend_uid === user_uuid ? -12 : -8)) // image's centering adjustment also needs to match with the circle's radius
+        //     .attr("y", (d) => (d.friend_uid === user_uuid ? -12 : -8)) // image's centering adjustment also needs to match with the circle's radius
+        //     .attr("width", (d) => (d.friend_uid === user_uuid ? 24 : 16)) // Adjust the size of the image if the user_uuid matches with the friend_uid
+        //     .attr("height", (d) => (d.friend_uid === user_uuid ? 24 : 16)) // Adjust the size of the image if the user_uuid matches with the friend_uid
+        //     .attr("clip-path", "url(#clipObj)");
 
         node.append("circle").attr("r", 8).attr("fill", "black").attr("opacity", 0.4);
 
@@ -107,19 +174,19 @@ function Graph(data, width, height, onNodeClick){   //TODO: define width, height
             .join("text")
             .attr("class", "label")
             .style("text-anchor", "middle")
-            .style("fill", "white")
+            .style("fill", "black")
             .style("font-family", "Sans-Serif")
             .style("font-size", 7)
             .text((d) => d.card_name)
             .on("click", (d) => {
                 onNodeClick(d);
             })
-            .on("mouseover", function () {
-                select(this).style("cursor", "pointer"); // Change the cursor to the pointer on mouseover
-            })
-            .on("mouseout", function () {
-                select(this).style("cursor", "default"); // Reset the cursor to default on mouseout
-            });
+        //     .on("mouseover", function () {
+        //         select(this).style("cursor", "pointer"); // Change the cursor to the pointer on mouseover
+        //     })
+        //     .on("mouseout", function () {
+        //         select(this).style("cursor", "default"); // Reset the cursor to default on mouseout
+        //     });
         simulation.on("tick", () => {
             link
                 .attr("x1", (d) => d.source.x)
@@ -135,7 +202,8 @@ function Graph(data, width, height, onNodeClick){   //TODO: define width, height
                 .attr("x", (d) => (d.source.x + d.target.x) / 2)
                 .attr("y", (d) => (d.source.y + d.target.y) / 2);
             });
-        }, [data, width, height, onNodeClick]);
+        }, []);
+        // }, [data, width, height, onNodeClick]);
     return (
         <>
             <svg ref={ref} style={{ width, height }} viewBox={`0 0 ${width} ${height}`} />

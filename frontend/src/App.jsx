@@ -15,7 +15,7 @@ const [email, setEmail] = useState("")
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage setLoggedIn={setLoggedIn} />} />
-          {/* {/* <Route path="/signup" element={<SignupPage />} /> */}
+          {/* <Route path="/signup" element={<SignupPage />} /> */}
           <Route path="/dashboard" 
             element={<DashboardPage email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} 
           />
