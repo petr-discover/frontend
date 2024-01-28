@@ -6,7 +6,7 @@ import DashboardPage from './components/Dashboad/DashboardPage'
 
 function App() {
 
-const [loggedIn, setLoggedIn] = useState(false);
+const [loggedIn, setLoggedIn] = useState(true);
 const [email, setEmail] = useState("")
 
 
@@ -17,8 +17,10 @@ const [email, setEmail] = useState("")
           <Route path="/" element={<LoginPage setLoggedIn={setLoggedIn} />} />
           {/* {/* <Route path="/signup" element={<SignupPage />} /> */}
           <Route path="/dashboard" 
-            element={<DashboardPage email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} 
-          />
+    element={<DashboardPage loggedIn={loggedIn} email={email} />} 
+/>
+        
+          {/* email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} */}
           {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>
       </BrowserRouter>

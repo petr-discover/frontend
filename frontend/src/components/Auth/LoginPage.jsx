@@ -103,7 +103,7 @@ const LoginPage = (props) => {
                     <div className="imageWrapper">
                         <img src="/assets/whiteborderlogo.png" alt="logo" className="circularImage" />
                     </div>
-                    <h2>petr discover</h2>
+                    <h2 className="login-name">petr discover</h2>
                 </div>
                 <div className="nav">
                     <div className="links">
@@ -162,60 +162,60 @@ const LoginPage = (props) => {
                 </div>
             </div>
             </form>
-        )}
+            )}
 
-        {activeForm === 'signup' && (
-            <form className="form-signup" action="" method="post" name="form">
-                {/* Signup form fields */}
-                <div className="inputContainer">
-                    <input
-                        id="username"
-                        type="text"
-                        name="Username"
-                        placeholder="username"
-                        value={username}
-                        onChange={e => setUsername(e.target.value)}
-                        className="inputBox"
-                    />
-                    <label className="errorLabel">{usernameError}</label>
-                </div>
-                <br />
-                <div className="inputContainer">
-                    <input
-                        id="uname"
-                        type="text"
-                        name="Email"
-                        placeholder="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                        className="inputBox"
-                    />
-                    <label className="errorLabel">{emailError}</label>
-                </div>
-                <br />
-                <div className="inputContainer">
-                    <input
-                        id="password"
-                        type="password"
-                        name="Password"
-                        placeholder="password"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        className="inputBox"
-                    />
-                    <label className="errorLabel">{passwordError}</label>
-                </div>
-                <br />
-                <div className="inputContainer">
-                    <input
-                        className="inputButton"
-                        type="submit"
-                        onClick={onButtonClick}
-                        value="register me"
-                    />
-                </div>
-            </form>
-        )}
+            {activeForm === 'signup' && (
+                <form className="form-signup" action="" method="post" name="form">
+                    {/* Signup form fields */}
+                    <div className="inputContainer">
+                        <input
+                            id="username"
+                            type="text"
+                            name="Username"
+                            placeholder="username"
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
+                            className="inputBox"
+                        />
+                        <label className="errorLabel">{usernameError}</label>
+                    </div>
+                    <br />
+                    <div className="inputContainer">
+                        <input
+                            id="uname"
+                            type="text"
+                            name="Email"
+                            placeholder="email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            className="inputBox"
+                        />
+                        <label className="errorLabel">{emailError}</label>
+                    </div>
+                    <br />
+                    <div className="inputContainer">
+                        <input
+                            id="password"
+                            type="password"
+                            name="Password"
+                            placeholder="password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                            className="inputBox"
+                        />
+                        <label className="errorLabel">{passwordError}</label>
+                    </div>
+                    <br />
+                    <div className="inputContainer">
+                        <input
+                            className="inputButton"
+                            type="submit"
+                            onClick={onButtonClick}
+                            value="register me"
+                        />
+                    </div>
+                </form>
+            )}
             
         </div>
     );
