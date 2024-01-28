@@ -117,7 +117,7 @@ const ProfilePage = (props) => {
     return (
         <div className="profile-page">
             <h1>Update Profile</h1>
-            
+        <div className="avatarAndForm">    
                 <form className="form-login" action="" method="put" name="form">
                     {/* profile form fields */}
                     
@@ -253,8 +253,8 @@ const ProfilePage = (props) => {
             <div className="imageContainer">
                     <input type="file" id="fileInput" onChange={settingFile}/>
                     <img src={file}/>
-                </div>
-            
+            </div>
+        </div>    
         
     </div>
     );

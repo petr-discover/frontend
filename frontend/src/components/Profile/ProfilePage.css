@@ -10,10 +10,19 @@ body {
     overflow: hidden;
 }
 
+.avatarAndForm {
+    display: flex;
+    position: space-between;
+}
+
 .imageContainer {
+    margin: 0;
+    padding: 0;
     top: 50%;
     left: 60%;
     transition: transform(-50%, -50%);
+    align-items: center;
+    justify-content: center;
 }
 
 .imageContainer input {
@@ -63,7 +72,7 @@ h2 {
 }
 
 .profile-page input{
-    width: 50%;
+    width: 100%;
     align-items: center;
     justify-content: center;
     background-color: transparent;
@@ -98,14 +107,14 @@ input::placeholder {
 .name {
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 100%;
 }
 
 #first {
     margin-right: 20px;
 }
 #last {
-    margin-right: 0;
+    margin-right: 20px;
 }
 .name input {
     width: 100%;
