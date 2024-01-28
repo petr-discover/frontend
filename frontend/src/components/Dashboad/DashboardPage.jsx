@@ -8,7 +8,10 @@ const Dashboard = () => {
     return (
         <>
             <NavBar />
-            <Graph />
+            
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                <Graph />
+            </div>
         </>
     );
 };

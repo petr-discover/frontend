@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import DashboardPage from './components/Dashboad/DashboardPage';
 import LoginPage from './components/Auth/LoginPage';
-
+import './App.css'; // Tell webpack that Button.js uses these styles
 
 function App() {
   return (
