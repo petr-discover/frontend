@@ -6,7 +6,7 @@ const NavBar = () => {
         <nav class="navbar">
             <div class="navbar-content">
                 <div class="navbar-brand">
-                    <img src="/assets/whiteborderlogo.png" width="60" height="60" alt=""/>
+                    <img src="/assets/officiallogo2.png" width="60" height="60" alt=""/>
                     <h2 className="navbar-name">petr discover</h2>
                 </div>
                 <div class="navbar-menu">
