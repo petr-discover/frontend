@@ -1,7 +1,14 @@
 import React from 'react';
 import './NavBar.css';
+import { logout } from '../Provider/authService';
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
+    const navigate = useNavigate();
+    const handleLogout = () =>{
+        logout();
+        navigate('/');
+    }
     return (
         <nav class="navbar">
             <div class="navbar-content">
@@ -12,7 +19,7 @@ const NavBar = () => {
                 <div class="navbar-menu">
                     <div class="navbar-item-home">home</div>
                     <div class="navbar-item-profile">profile</div>
-                    <div class="navbar-item-logout">logout</div>
+                    <div onClick={handleLogout} class="navbar-item-logout">logout</div>
                 </div>
             </div>
         </nav>
