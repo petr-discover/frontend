@@ -1,0 +1,47 @@
+.navbar {
+    background-color: rgba(26, 26, 26, 0.8); /* Adjust the last value (0.5) to change the opacity */
+    padding: 0 20px;
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 0;
+}
+
+.navbar-brand img {
+    position: relative;
+    top: 15px; /* Adjust this value to move the image up or down */
+}
+
+.navbar-brand h2{
+    color: #fff;
+    display: inline-block;
+    padding: 10px 0px 0px 10px;
+    position: relative;
+    top: -10px;
+    justify-content: center;
+}
+
+.navbar-menu div {
+    color: #fff;
+    display: inline-block;
+    padding: 8px; /* Increase this value to make the box bigger */
+    box-sizing: border-box;
+}
+
+.navbar-item-home,
+.navbar-item-profile,
+.navbar-item-logout {
+    margin: 0 20px; 
+    font-size: 18px;
+}
+
+.navbar-item-home:hover,
+.navbar-item-profile:hover,
+.navbar-item-logout:hover {
+    box-shadow: 0px 0px 20px #42F3FA;
+    border-radius: 20px;
+    transition: all .25s ease;
+}

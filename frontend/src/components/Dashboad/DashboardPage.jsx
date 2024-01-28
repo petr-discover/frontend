@@ -1,8 +1,9 @@
 import React from "react"
 import { useNavigate } from "react-router-dom";
+import NavBar from './NavBar.jsx';
 
-const DashboardPage = (props) => {
-    const { loggedIn, email } = props;
+const DashboardPage = ({ loggedIn, email }) => {
+    // const { loggedIn, email } = props;
     const navigate = useNavigate();
 
     const onButtonClick = () => {
@@ -12,26 +13,10 @@ const DashboardPage = (props) => {
 
 
     return <div className="mainContainer">
-    <div className={"titleContainer"}>
-        <div>Welcome!</div>
-    </div>
-    <div>
-        This is the home page.
-    </div>
-    <div className={"buttonContainer"}>
-        <input
-            className={"inputButton"}
-            type="button"
-            onClick={onButtonClick}
-            value={"Logout"} />
-        {(loggedIn ? <div>
-            Your email address is {email}
-        </div> : <div/>)}
-    </div>
-
+    <NavBar></NavBar>
 
 </div>
 
-}
+} 
 
 export default DashboardPage;
