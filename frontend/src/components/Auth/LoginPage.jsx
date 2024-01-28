@@ -26,28 +26,9 @@ const LoginPage = () => {
         setUsernameError("");
     
         // Check if the user has entered all fields correctly
-        if ("" === firstName) {
-            setFirstNameError("please enter your first name");
-            return;
-        }
-    
-        if ("" === lastName) {
-            setLastNameError("please enter your last name");
-            return;
-        }
     
         if ("" === username) {
             setUsernameError("please enter a username");
-            return;
-        }
-    
-        if ("" === email) {
-            setEmailError("please enter your email");
-            return;
-        }
-    
-        if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-            setEmailError("Please enter a valid email");
             return;
         }
     
@@ -66,26 +47,26 @@ const LoginPage = () => {
         if (activeForm === 'login') {
             console.log('entering login');
 
-            login(email, password).then(
+            login(username, password).then(
                 (response) => {
-                    setMessage(response)
+                    console.log(response);
                     navigate('/dashboard');
                 },
                 error => {
                     window.alert('Wrong email or password')
-                    setMessage(resMessage);
+                    setMessage(error);
             });
             console.log(message);
         } else {
             console.log('entering register');
             register(email, username, password).then(
-                (response) => {
+                () => {
                     setActiveForm('login');
                     setPassword('');
                 },
                 error => {
                     window.alert('User Already exists')
-                    setMessage(response);
+                    setMessage(error);
             });
             console.log(message);
             
@@ -118,13 +99,13 @@ const LoginPage = () => {
                     <input
                         id="uname"
                         type="text"
-                        name="Email"
-                        placeholder="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
+                        name="username"
+                        placeholder="username"
+                        value={username}
+                        onChange={e => setUsername(e.target.value)}
                         className="inputBox"
                     />
-                    <label className="errorLabel">{emailError}</label>
+                    <label className="errorLabel">{usernameError}</label>
                 </div>
             <br />
             <div className="inputContainer">
