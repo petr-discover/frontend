@@ -1,29 +1,19 @@
-import { useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
-import LoginPage from './components/Auth/LoginPage'
-import DashboardPage from './components/Dashboad/DashboardPage'
+import React, { useEffect, useContext } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import DashboardPage from './components/Dashboad/DashboardPage';
+import LoginPage from './components/Auth/LoginPage';
+
 
 function App() {
-
-const [loggedIn, setLoggedIn] = useState(false);
-const [email, setEmail] = useState("")
-
-
   return (
-    <div className='app'>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LoginPage setLoggedIn={setLoggedIn} />} />
-          {/* {/* <Route path="/signup" element={<SignupPage />} /> */}
-          <Route path="/dashboard" 
-            element={<DashboardPage email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} 
-          />
-          {/* <Route path="/profile" element={<Profile />} /> */}
-        </Routes>
-      </BrowserRouter>
-    </div>
+      <Router>
+       <Routes>
+         <Route path="/" element={<LoginPage />} />
+         <Route path="/dashboard" element={<DashboardPage />} />
+         {/* <Route path="/" component={HomePage} /> */}
+       </Routes>
+      </Router>
   );
-}
+ }
 
-export default App
+export default App;
