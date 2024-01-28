@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './LoginPage.css';
 import { useNavigate } from 'react-router-dom'
-import { login, register } from '../Provider/authService';
+import { login, register, googleLogin } from '../Provider/authService';
 
 const LoginPage = () => {
     const [username, setUsername] = useState("");
@@ -17,6 +17,17 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     // Log in a user using email and password
+    function handleGoogleLogin() {
+        googleLogin().then(
+            (response) => {
+                setMessage(response)
+                navigate('/dashboard');
+            },
+            error => {
+                window.alert('Wrong email or password')
+                setMessage(resMessage);
+        });
+    }
 
     function onButtonClick(e){
         // Set initial error values to empty
@@ -26,28 +37,9 @@ const LoginPage = () => {
         setUsernameError("");
     
         // Check if the user has entered all fields correctly
-        if ("" === firstName) {
-            setFirstNameError("please enter your first name");
-            return;
-        }
-    
-        if ("" === lastName) {
-            setLastNameError("please enter your last name");
-            return;
-        }
     
         if ("" === username) {
             setUsernameError("please enter a username");
-            return;
-        }
-    
-        if ("" === email) {
-            setEmailError("please enter your email");
-            return;
-        }
-    
-        if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-            setEmailError("Please enter a valid email");
             return;
         }
     
@@ -66,17 +58,21 @@ const LoginPage = () => {
         if (activeForm === 'login') {
             console.log('entering login');
 
-            login(email, password).then(
+            login(username, password).then(
                 (response) => {
                     setMessage(response)
                     navigate('/dashboard');
                 },
                 error => {
                     window.alert('Wrong email or password')
-                    setMessage(resMessage);
+                    setMessage(message);
             });
             console.log(message);
         } else {
+            if ("" === email) {
+                setEmailError("please enter your email");
+                return;
+            }
             console.log('entering register');
             register(email, username, password).then(
                 (response) => {
@@ -97,7 +93,7 @@ const LoginPage = () => {
             <div className="titleContainer">
                 <div className="headerContainer">
                     <div className="imageWrapper">
-                        <img src="/assets/whiteborderlogo.png" alt="logo" className="circularImage" />
+                        <img src="/assets/officiallogo.png" width="120px" height="120px" alt="logo" className="circularImage" />
                     </div>
                     <h2 className="login-name">petr discover</h2>
                 </div>
@@ -118,13 +114,13 @@ const LoginPage = () => {
                     <input
                         id="uname"
                         type="text"
-                        name="Email"
-                        placeholder="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
+                        name="Username"
+                        placeholder="username"
+                        value={username}
+                        onChange={e => setUsername(e.target.value)}
                         className="inputBox"
                     />
-                    <label className="errorLabel">{emailError}</label>
+                    <label className="errorLabel">{usernameError}</label>
                 </div>
             <br />
             <div className="inputContainer">
@@ -150,10 +146,12 @@ const LoginPage = () => {
             </div>
             <p className="orText">⎯  or  ⎯</p>
             <div className="googleContainer">
-                <div className="flexContainer">
-                    <img src="/assets/googleicon.png" alt="google" className="googleImage" />
-                    login with Google
-                </div>
+                <button onClick={handleGoogleLogin}>
+                    <div className="flexContainer">
+                        <img src="/assets/googleicon.png" alt="google" className="googleImage" />
+                        login with Google
+                    </div>
+                </button>
             </div>
             </form>
             )}
@@ -164,8 +162,8 @@ const LoginPage = () => {
                 <div className="inputContainer">
                     <input
                         id="email"
-                        type="email"
-                        name="email"
+                        type="text"
+                        name="Email"
                         placeholder="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}

@@ -3,6 +3,19 @@ import Cookie from 'js-cookie'
 
 const API_URL = 'http://35.197.110.208:8080/api/v1/auth/';
 
+export function googleLogin() {
+  return axios
+  .get(API_URL + 'google/login')
+  .then(response => {
+    console.log(response);
+    if (response.data.accessToken) {
+      Cookie.set("token", response.data.access_token);
+      console.log(Cookie.get('token'));
+    }
+    return response.data;
+  });
+}
+
 export function login(username, password) {
  return axios
    .post(API_URL + 'login', {
@@ -11,7 +24,7 @@ export function login(username, password) {
    })
    .then(response => {
     console.log(response.data);
-     if (response.data.accessToken) {
+     if (response.data) {
         Cookie.set("token", response.access_token);
         console.log(Cookie.get('token'));
      }
