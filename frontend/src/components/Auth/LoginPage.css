@@ -174,13 +174,19 @@ label {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: none;
     background: #eb4338;
     color: #fff;
     border-radius: 20px;
+    border: 2px solid #eb4338;
+    cursor: pointer;
     padding: 5px 0;
     width: 70%;
 }
 
+.flexContainer:hover {
+    box-shadow: 0px 0px 20px #42F3FA;
+}
 
 .googleImage {
     margin-right: 10px; /* Adjust as needed */

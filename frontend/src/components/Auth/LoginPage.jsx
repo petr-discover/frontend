@@ -146,11 +146,9 @@ const LoginPage = () => {
             </div>
             <p className="orText">⎯  or  ⎯</p>
             <div className="googleContainer">
-                <button onClick={handleGoogleLogin}>
-                    <div className="flexContainer">
+                <button className="flexContainer" onClick={handleGoogleLogin}>
                         <img src="/assets/googleicon.png" alt="google" className="googleImage" />
                         login with Google
-                    </div>
                 </button>
             </div>
             </form>
