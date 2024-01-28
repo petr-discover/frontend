@@ -6,45 +6,45 @@ function Graph(){  //data, width, height, onNodeClick){   //TODO: define width, 
     const ref = useRef(null);
 
     //data starts here
-    const width = 400;
-    const height = 400;
+    const width = 800;
+    const height = 800;
     
     const data = {
             "nodes": [
               {
                 "user_uid": "1",
                 "friend_uid": "user1",
-                "card_name": "Card A",
+                "card_name": "Me",
                 "user_photo": "user1_photo.jpg",
-                "relation_name": "Friendship"
+                "relation_name": "Friend"
               },
               {
                 "user_uid": "2",
                 "friend_uid": "user2",
-                "card_name": "Card B",
+                "card_name": "Ben",
                 "user_photo": "user2_photo.jpg",
-                "relation_name": "Colleague"
+                "relation_name": "Friend"
               },
               {
                 "user_uid": "3",
                 "friend_uid": "user3",
-                "card_name": "Card C",
+                "card_name": "Hannah",
                 "user_photo": "user2_photo.jpg",
-                "relation_name": "Daddy"
+                "relation_name": "Classmate"
               },
               {
                 "user_uid": "4",
                 "friend_uid": "user4",
-                "card_name": "Card D",
+                "card_name": "Time",
                 "user_photo": "user2_photo.jpg",
                 "relation_name": "Friend"
               },
               {
                 "user_uid": "5",
                 "friend_uid": "user5",
-                "card_name": "Card E",
+                "card_name": "Peter",
                 "user_photo": "user2_photo.jpg",
-                "relation_name": "Club Member"
+                "relation_name": "Soccer club"
               }
             ],
 
@@ -74,6 +74,7 @@ function Graph(){  //data, width, height, onNodeClick){   //TODO: define width, 
     useEffect(() =>{
 
         const svg = select(ref.current);
+        svg.style("background-color", "black");
         const user_id = 'user1';         //TODO: fix this
 
         svg
@@ -86,7 +87,7 @@ function Graph(){  //data, width, height, onNodeClick){   //TODO: define width, 
             .attr("dx", 0)
             .attr("dy", 0)
             .attr("stdDeviation", 1) 
-            .attr("flood-color", "yellow");
+            .attr("flood-color", "blue");
 
         const simulation = forceSimulation(data.nodes)
             .force(
@@ -105,13 +106,13 @@ function Graph(){  //data, width, height, onNodeClick){   //TODO: define width, 
             .join("clipPath")
             .attr("id", "clipObj")
             .append("circle")
-            .attr("r", 8);
+            .attr("r", 20); //here 8
 
         const link = svg
             .selectAll("line")
             .data(data.links)
             .join("line")
-            .attr("stroke", "black")
+            .attr("stroke", "white")
             .attr("stroke-opacity", 0.2)
             .attr("stroke-width", 1);
 
@@ -121,41 +122,41 @@ function Graph(){  //data, width, height, onNodeClick){   //TODO: define width, 
             .join("text")
             .attr("class", "link-label")
             .style("text-anchor", "middle")
-            .style("fill", "black")
+            .style("fill", "white")
             .style("font-family", "Arial")
-            .style("font-size", 5)
-            .text((d) => d.target.relation_name);
+            .style("font-size", 10) //here 5
+            .text((d) => d.target.relation_name); 
 
         const node = svg
             .selectAll("g")
             .data(data.nodes)
             .join("g")
             .attr("transform", (d) => `translate(${d.x}, ${d.y})`)
-            // .on("click", (d) => {
-            //   onNodeClick(d);
-            // })
-            // .on("mouseover", function () {
-            //   select(this).style("cursor", "pointer"); // Change the cursor to the pointer on mouseover
-            // })
-            // .on("mouseout", function () {
-            //   select(this).style("cursor", "default"); // Reset the cursor to default on mouseout
-            // });
+            .on("click", (d) => {
+              onNodeClick(d);
+            })
+            .on("mouseover", function () {
+              select(this).style("cursor", "pointer"); // Change the cursor to the pointer on mouseover
+            })
+            .on("mouseout", function () {
+              select(this).style("cursor", "default"); // Reset the cursor to default on mouseout
+            });
 
         node
             .append("circle")
             .attr("r", (d) => (d.friend_uid === user_id ? 10 : 8.5)) // user_uuid와 friend_uid가 같을 때 원의 반경을 12로 설정, 그렇지 않으면 기존대로 8.5로 설정
-            .attr("fill", "lightyellow")
+            .attr("fill", "lightblue")
             .attr("opacity", 0.8)
             .attr("filter", "url(#drop-shadow)")
-            // .on("click", (d) => {
-            //   onNodeClick(d);
-            // })
-        //     .on("mouseover", function () {
-        //       select(this).style("cursor", "pointer");
-        //     })
-        //     .on("mouseout", function () {
-        //       select(this).style("cursor", "default");
-        //     });
+            .on("click", (d) => {
+              onNodeClick(d);
+            })
+            .on("mouseover", function () {
+              select(this).style("cursor", "pointer");
+            })
+            .on("mouseout", function () {
+              select(this).style("cursor", "default");
+            });
         
         // node
         //     .append("image")
@@ -174,19 +175,19 @@ function Graph(){  //data, width, height, onNodeClick){   //TODO: define width, 
             .join("text")
             .attr("class", "label")
             .style("text-anchor", "middle")
-            .style("fill", "black")
+            .style("fill", "white")
             .style("font-family", "Sans-Serif")
-            .style("font-size", 7)
+            .style("font-size", 15)
             .text((d) => d.card_name)
             .on("click", (d) => {
                 onNodeClick(d);
             })
-        //     .on("mouseover", function () {
-        //         select(this).style("cursor", "pointer"); // Change the cursor to the pointer on mouseover
-        //     })
-        //     .on("mouseout", function () {
-        //         select(this).style("cursor", "default"); // Reset the cursor to default on mouseout
-        //     });
+            .on("mouseover", function () {
+                select(this).style("cursor", "pointer"); // Change the cursor to the pointer on mouseover
+            })
+            .on("mouseout", function () {
+                select(this).style("cursor", "default"); // Reset the cursor to default on mouseout
+            });
         simulation.on("tick", () => {
             link
                 .attr("x1", (d) => d.source.x)

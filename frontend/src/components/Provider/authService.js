@@ -12,8 +12,8 @@ export function login(username, password) {
    .then(response => {
     console.log(response.data);
      if (response.data) {
-        Cookie.set("token", response.access_token);
-        console.log(Cookie.get('token'));
+        // Cookie.set("token", response);
+        console.log(response);
      }
 
      return response;
@@ -39,7 +39,7 @@ export function register(email, username, password) {
 }
 
 export function getUser(){
-  return axios.get(API_URL + 'user')
+    return axios.get(API_URL + 'user', { withCredentials: true })
   .then(response => {
     console.log(response);
   });
