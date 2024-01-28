@@ -1,0 +1,190 @@
+#particles-js {
+    height: 100%;
+}
+
+.loginBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    height: 580px;
+    background: #000000;
+    border-radius: 10px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.user {
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-name {
+    margin: 0;
+    padding: 5 0 10px;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.nav {
+    transition: all .5s ease;
+    display: flex;
+    justify-content: space-between;
+}
+
+.links {
+    display: flex;
+    width: 450px;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+}
+
+.login-active a, .signup-inactive a {
+    padding-bottom: 10px;
+    color: #9892fb;
+    text-decoration: none;
+    border-bottom: solid 2px #fff;
+    transition: all .25s ease;
+    cursor: pointer;
+}
+
+.login-inactive a {
+    padding-bottom: 0;
+    color: rgba(255, 255, 255, .3);
+    text-decoration: none;
+    border-bottom: none;
+    cursor: pointer;
+}
+
+.signup-active a {
+    cursor: pointer;
+    color: #9892fb;
+    text-decoration: none;
+    border-bottom: solid 2px #fff;
+    padding-bottom: 10px;
+    transition: all .25s ease;
+}
+
+.signup-inactive a {
+    cursor: pointer;
+    color: rgba(255, 255, 255, .3);
+    text-decoration: none;
+    transition: all .25s ease;
+    border-bottom: none;
+}
+
+label {
+    color: #d3443c;
+    text-align: center;
+}
+
+.loginBox input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.loginBox input[type="text"],
+.loginBox input[type="password"] {
+    border: none;
+    border-bottom: 2px solid #262626;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    background: transparent;
+    font-size: 16px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.loginBox input[type="text"]:hover,
+.loginBox input[type="password"]:hover {
+    color: #fff;
+    border: 1px solid #42F3FA;
+    border-radius: 20px;
+    box-shadow: 0 0 5px rgba(0, 255, 0, .3), 0 0 10px rgba(0, 255, 0, .2), 0 0 15px rgba(0, 255, 0, .1), 0 2px 0 black
+}
+
+.loginBox input[type="text"]:focus,
+.loginBox input[type="password"]:focus {
+    border-bottom: 2px solid #42F3FA;
+}
+
+.inputBox {
+    position: relative;
+}
+
+.inputBox span {
+    position: absolute;
+    top: 10px;
+    color: #262626;
+}
+
+.loginBox input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    width: auto;
+    font-size: 16px;
+    background: #9892fb;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 0 20px; 
+    display: block; 
+    margin: 0 auto; 
+    transition: all 0.3s ease;
+
+}
+
+.loginBox input[type="submit"]:hover {
+    box-shadow: 0px 0px 20px #42F3FA;
+}
+
+.loginBox p {
+    color: #757575;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+}
+
+.googleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.flexContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eb4338;
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 0;
+    width: 70%;
+}
+
+
+.googleImage {
+    margin-right: 10px; /* Adjust as needed */
+}
+
+/* a:hover {
+    color: #00ffff
+} */
+
+
+/* dark purple: #59238F */

@@ -1,37 +1,29 @@
-import React from "react"
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { logout } from '../Provider/authService';
+import { useNavigate } from 'react-router-dom';
 
-const DashboardPage = (props) => {
-    const { loggedIn, email } = props;
+const Dashboard = () => {
     const navigate = useNavigate();
-
-    const onButtonClick = () => {
-        props.setLoggedIn(false);
-        navigate("/");
-    }
+ const [currentUser, setCurrentUser] = useState([]);
+ const [isLoading, setIsLoading] = useState(true);
 
 
-    return <div className="mainContainer">
-    <div className={"titleContainer"}>
-        <div>Welcome!</div>
-    </div>
-    <div>
-        This is the home page.
-    </div>
-    <div className={"buttonContainer"}>
-        <input
-            className={"inputButton"}
-            type="button"
-            onClick={onButtonClick}
-            value={"Logout"} />
-        {(loggedIn ? <div>
-            Your email address is {email}
-        </div> : <div/>)}
-    </div>
-
-
-</div>
-
+const handleLogout = () =>{
+    logout();
+    navigate('/');
 }
 
-export default DashboardPage;
+ return (
+    <div>
+      <h2>Welcome, {currentUser.username}</h2>
+      <input
+            className="inputButton"
+            type="button"
+            onClick={handleLogout}
+            value="Logout"
+        />
+    </div>
+ );
+};
+
+export default Dashboard;
