@@ -7,21 +7,6 @@ const Dashboard = () => {
  const [currentUser, setCurrentUser] = useState([]);
  const [isLoading, setIsLoading] = useState(true);
 
-//  useEffect(() => {
-//     const currentUser = getCurrentUser();
-//     const id = currentUser.id;
-
-//     fetch(`api/user/${id}`, { headers: authHeader() })
-//       .then(response => response.json())
-//       .then(data => {
-//          setCurrentUser(data);
-//          setIsLoading(false);
-//       });
-//  }, []);
-
-//  if (isLoading) {
-//     return <div>Loading...</div>;
-//  }
 
 const handleLogout = () =>{
     logout();

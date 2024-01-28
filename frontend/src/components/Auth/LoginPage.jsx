@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import { login, register } from '../Provider/authService';
 
 const LoginPage = () => {
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [usernameError, setUsernameError] = useState("");
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
     const [activeForm, setActiveForm] = useState('login'); // 'login' or 'signup'
     const [message, setMessage] = useState("");
-    const [username, setUsername] = useState("");
-    const [usernameError, setUsernameError] = useState("");
 
     // const { login } = useAuth();
     const navigate = useNavigate();
@@ -21,45 +21,45 @@ const LoginPage = () => {
     function onButtonClick(e){
         // Set initial error values to empty
         e.preventDefault();
-        // setEmailError("");
-        // setPasswordError("");
-        // setUsernameError("");
+        setEmailError("");
+        setPasswordError("");
+        setUsernameError("");
     
         // Check if the user has entered all fields correctly
-        // if ("" === firstName) {
-        //     setFirstNameError("please enter your first name");
-        //     return;
-        // }
+        if ("" === firstName) {
+            setFirstNameError("please enter your first name");
+            return;
+        }
     
-        // if ("" === lastName) {
-        //     setLastNameError("please enter your last name");
-        //     return;
-        // }
+        if ("" === lastName) {
+            setLastNameError("please enter your last name");
+            return;
+        }
     
-        // if ("" === username) {
-        //     setUsernameError("please enter a username");
-        //     return;
-        // }
+        if ("" === username) {
+            setUsernameError("please enter a username");
+            return;
+        }
     
-        // if ("" === email) {
-        //     setEmailError("please enter your email");
-        //     return;
-        // }
+        if ("" === email) {
+            setEmailError("please enter your email");
+            return;
+        }
     
-        // if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-        //     setEmailError("Please enter a valid email");
-        //     return;
-        // }
+        if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+            setEmailError("Please enter a valid email");
+            return;
+        }
     
-        // if ("" === password) {
-        //     setPasswordError("please enter a password");
-        //     return;
-        // }
+        if ("" === password) {
+            setPasswordError("please enter a password");
+            return;
+        }
     
-        // if (password.length < 7) {
-        //     setPasswordError("password must be 7 characters or longer");
-        //     return;
-        // }
+        if (password.length < 6) {
+            setPasswordError("password must be 7 characters or longer");
+            return;
+        }
     
         // Handle signup or login based on activeForm state
         console.log('choose');
@@ -99,7 +99,7 @@ const LoginPage = () => {
                     <div className="imageWrapper">
                         <img src="/assets/whiteborderlogo.png" alt="logo" className="circularImage" />
                     </div>
-                    <h2>petr discover</h2>
+                    <h2 className="login-name">petr discover</h2>
                 </div>
                 <div className="nav">
                     <div className="links">
@@ -115,17 +115,17 @@ const LoginPage = () => {
             {activeForm === 'login' && (
             <form className="form-login" action="" method="post" name="form">
                 <div className="inputContainer">
-                <input
-                    id="uname"
-                    type="text"
-                    name="Email"
-                    placeholder="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    className="inputBox"
-                />
-                <label className="errorLabel">{emailError}</label>
-            </div>
+                    <input
+                        id="uname"
+                        type="text"
+                        name="Email"
+                        placeholder="email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        className="inputBox"
+                    />
+                    <label className="errorLabel">{emailError}</label>
+                </div>
             <br />
             <div className="inputContainer">
                 <input
@@ -148,8 +148,15 @@ const LoginPage = () => {
                     value="connect me"
                 />
             </div>
+            <p className="orText">⎯  or  ⎯</p>
+            <div className="googleContainer">
+                <div className="flexContainer">
+                    <img src="/assets/googleicon.png" alt="google" className="googleImage" />
+                    login with Google
+                </div>
+            </div>
             </form>
-        )}
+            )}
 
         {activeForm === 'signup' && (
             <form className="form-signup" action="" method="post" name="form">
