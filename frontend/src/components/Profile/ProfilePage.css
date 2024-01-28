@@ -1,0 +1,145 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(../../../public/assets/planet-transformed.jpeg);
+    height: 100vh;
+    font-family: 'Lato', sans-serif;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+}
+
+.imageContainer {
+    top: 50%;
+    left: 60%;
+    transition: transform(-50%, -50%);
+}
+
+.imageContainer input {
+    animation: fadeInUp 1s ease-in-out;
+}
+
+h1 {
+    animation: fadeInUp 1s ease-in-out forwards;
+}
+
+h2 {
+    color: white;
+}
+
+.profile-page {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.35);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    height: 450px;
+    min-height: 200px;
+    border-radius: 10px;
+    padding: 40px;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+
+.inputContainer {
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeInUp 1s ease-in-out forwards;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-page input{
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border-radius: 8px;
+    border-width: 1.4px;
+    border-color: rgb(89, 89, 194);
+    padding: 5px;
+    font-size: 15px;
+    font-family: Lato, sans-serif;
+}
+
+input::placeholder {
+    color: black;
+}
+
+
+.profile-page input:focus, input:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 8px 3px rgba(229, 245, 166, 0.8);
+    cursor: pointer;
+}
+
+
+.inputContainer label {
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
+    text-align: left;
+}
+
+.name {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+#first {
+    margin-right: 20px;
+}
+#last {
+    margin-right: 0;
+}
+.name input {
+    width: 100%;
+}
+
+#submit {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+#submit input {
+    border: none;
+    outline: none;
+    height: 35px;
+    font-size: 16px;
+    background: #9892fb;
+    color: black;
+    border-radius: 20px;
+    cursor: pointer;
+    display: block; 
+    margin: 0 auto;
+    transition: transform 0.1s ease-in-out; 
+}
+
+#submit input:hover {
+    transform: scale(1.05);
+    box-shadow: none;
+}
+
+
+@media screen and (max-width: 600px) {
+    body {
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
